@@ -101,6 +101,24 @@ export const RegisterForm = () => {
               />
               <FormField 
               control={form.control}
+              name="biometric"
+              render={({field}) => (
+                <FormItem>
+                  <FormLabel>Biometric</FormLabel>
+                  <FormControl>
+                    <Input 
+                    {...field}
+                    placeholder="Unique biometric string"
+                    type="text"
+                    disabled={isPending}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+              />
+              <FormField 
+              control={form.control}
               name="password"
               render={({field}) => (
                 <FormItem>

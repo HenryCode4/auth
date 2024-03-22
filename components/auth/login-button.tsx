@@ -27,7 +27,7 @@ asChild
         )
     }
     return (
-        <span onClick={onClick} className="cursor-pointer">
+        <span onClick={onClick} className="cursor-pointer ">
             {children}
         </span>
     )

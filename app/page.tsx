@@ -12,17 +12,17 @@ const font = Poppins({
 export default function Home() {
   return (
     
-    <main className='flex h-full flex-col items-center justify-center bg-gradient-to-r from-sky-800 via-sky-400 to-sky-800'>
+    <main className='flex h-full flex-col items-center justify-center bg-gradient-to-r from-purple-700 via-purple-400 to-purple-800'>
         <div className='space-y-6 text-center'>
           <h1 className={cn('text-6xl font-semibold text-white drop-shadow-md', font.className,)}>
-           🔐Auth
+           DIVIC
           </h1>
-          <p className='text-white text-lg'>
-           A Simple authentication service
+          <p className='text-white text-lg border border-gray-300 rounded-full shadow-gray-500/40 px-4 shadow-inner shadow-bottom'>
+           Software Solution House
           </p>
 
           <LoginButton>
-            <Button variant="secondary" size="lg">
+            <Button className='mt-6' variant="secondary" size="lg">
             Sign in
           </Button>
           </LoginButton>

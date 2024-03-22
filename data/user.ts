@@ -8,6 +8,14 @@ export const getUserByEmail = async (email: string) => {
         return null
     }
 }
+export const getUserByBiometric = async (biometricKey: string) => {
+    try {
+        const user = await db.user.findUnique({where: {biometricKey}})
+        return user;
+    } catch {
+        return null
+    }
+}
 
 export const getUserById = async (id: string) => {
     try {

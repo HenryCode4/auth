@@ -6,8 +6,7 @@ import React from 'react'
 import { CardWrapper } from '../../app/auth/_components/card-wrapper'
 import {useForm} from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
-import { LoginSchema } from "@/schemas";
-import {useSearchParams} from "next/navigation"
+import { BiometricSchema } from "@/schemas";
 
 import {
   Form,
@@ -22,40 +21,29 @@ import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import { login } from "@/actions/login";
-import Link from "next/link"
+import { biometric } from "@/actions/biometric"
 
 
-export const LoginForm = () => {
-  // to catch error from social login when email already exist
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl");
-  const urlError = searchParams.get("error") === "OAuthAccountNotLinked"
-    ? "Email already in use with different provider!"
-    : "";
-
-
+export const BiometricForm = () => {
   const [error, setError] = useState<string | undefined>("")
   const [success, setSuccess] = useState<string | undefined>("")
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<z.infer<typeof LoginSchema>>({
-    resolver: zodResolver(LoginSchema),
+  const form = useForm<z.infer<typeof BiometricSchema>>({
+    resolver: zodResolver(BiometricSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      biometricKey: "",
     }
   });
 
-  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+  const onSubmit = (values: z.infer<typeof BiometricSchema>) => {
     setError("");
     setSuccess("");
 
     startTransition(()=> {
-       login(values)
+       biometric(values)
        .then((data) => {
         setError(data?.error);
-        // TODO: add when we add 2fa
-        // setSuccess(data?.success);
        })
     })
     
@@ -64,8 +52,8 @@ export const LoginForm = () => {
   return (
     <CardWrapper 
     headerLabel='Welcome back'
-    backButtonLabel="Don't have an account?"
-    backButtonHref='/auth/register'
+    backButtonLabel="Back to login page"
+    backButtonHref='/auth/login'
     showSocial
     >
         <Form {...form}>
@@ -75,15 +63,15 @@ export const LoginForm = () => {
             <div className="space-y-4">
               <FormField 
               control={form.control}
-              name="email"
+              name="biometricKey"
               render={({field}) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>Biometric</FormLabel>
                   <FormControl>
                     <Input 
                     {...field}
-                    placeholder="henry@example.com"
-                    type="email"
+                    placeholder="biometric data"
+                    type="text"
                     disabled={isPending}
                     />
                   </FormControl>
@@ -91,40 +79,17 @@ export const LoginForm = () => {
                 </FormItem>
               )}
               />
-              <FormField 
-              control={form.control}
-              name="password"
-              render={({field}) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input 
-                    {...field}
-                    placeholder="******"
-                    type="password"
-                    disabled={isPending}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-              />
+              
             </div>
-            <FormError message={error || urlError} />
+            <FormError message={error} />
             <FormSuccess message={success} />
             <Button
             type="submit"
             className="w-full"
             disabled={isPending}
             >
-              Login
-            </Button> 
-            <div className="text-center w-full border py-1 rounded-md font-semibold">
-              <Link href={"/auth/biometric-key"}>
-                Login using Biometric
-              </Link>
-              
-              </div>
+              Submit
+            </Button>
           </form>
 
         </Form>

@@ -51,11 +51,10 @@ export const LoginForm = () => {
     setSuccess("");
 
     startTransition(()=> {
-       login(values)
+       login(values, callbackUrl)
        .then((data) => {
         setError(data?.error);
-        // TODO: add when we add 2fa
-        // setSuccess(data?.success);
+        setSuccess(data?.success);
        })
     })
     

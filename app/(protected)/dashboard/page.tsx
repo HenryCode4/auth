@@ -1,6 +1,6 @@
 import {auth, signOut} from "@/auth"
 
-const SettingsPage = async () => {
+const Dashboard = async () => {
     const session = await auth();
     return ( 
         <div>
@@ -18,4 +18,4 @@ const SettingsPage = async () => {
      );
 }
  
-export default SettingsPage;
+export default Dashboard;

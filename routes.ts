@@ -4,12 +4,13 @@
 */
 
 export const publicRoutes = [
-    "/"
+    "/",
+    "/auth/new-verification"
 ]
 
 /** 
 * this routes are used for authentication purposes
-*THese routes will redirect logged in users to /settings
+*THese routes will redirect logged in users to /dashboard
 * @type {string[]}
 */
 
@@ -32,4 +33,4 @@ export const apiAuthPrefix = "/api/auth";
 * the default redirect path after logging in 
 * @type {string}
 */
-export const DEFAULT_LOGIN_REDIRECT = "/settings";
+export const DEFAULT_LOGIN_REDIRECT = "/dashboard";

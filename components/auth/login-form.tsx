@@ -28,7 +28,6 @@ import Link from "next/link"
 export const LoginForm = () => {
   // to catch error from social login when email already exist
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl");
   const urlError = searchParams.get("error") === "OAuthAccountNotLinked"
     ? "Email already in use with different provider!"
     : "";
@@ -51,7 +50,7 @@ export const LoginForm = () => {
     setSuccess("");
 
     startTransition(()=> {
-       login(values, callbackUrl)
+       login(values)
        .then((data) => {
         setError(data?.error);
         setSuccess(data?.success);

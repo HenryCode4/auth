@@ -34,15 +34,12 @@ export default auth((req) => {
         //return back to the previous page after login
         // return Response.redirect(new URL("/auth/login", nextUrl));
 
-        let callbackUrl = nextUrl.pathname;
-        if (nextUrl.search) {
-          callbackUrl += nextUrl.search;
-        }
+        
     
-        const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+        
     
         return Response.redirect(new URL(
-          `/auth/login?callbackUrl=${encodedCallbackUrl}`,
+          `/auth/login`,
           nextUrl
         ));
     }

@@ -30,7 +30,7 @@ const Dashboard = () => {
             <h3 className="text-white p-2 bg-black/10  w-[250px] rounded-3xl shadow-inner">Softeware Solution House</h3>
             </div>
 
-            <h1 className=" text-6xl p-2 font-bold bg-gradient-to-l from-[#3742e0] via-[#7bf143] to-[#e07832] bg-clip-text text-transparent">Unlike any company you hired before</h1>
+            <h1 className=" text-6xl p-2 font-bold bg-gradient-to-l from-[#c4c5ca] via-[#7bf143] to-[#e07832] bg-clip-text text-transparent">Unlike any company you hired before</h1>
 
             <p className="text-gray-300">Streamline your software development process with Divic</p>
 

@@ -25,6 +25,7 @@ Prerequisites
 Node version 18.7.x
 
 Cloning the repository
+https://github.com/HenryCode4/auth.git
 
 -------------------------------------------------------------------------------------
 
@@ -66,5 +67,15 @@ npx prisma db push
 
 Start the app:
 npm run dev
+
+
+-------------------------------------------------------------------
+
+this project has been linked to a frontend file since nextjs is a fullstack app that can generate restful api and also a frontend for it.
+
+A deployed demo of this project.
+https://auth-phi-sand.vercel.app
+
+this site can be visited with this link.
 
 

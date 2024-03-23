@@ -44,14 +44,17 @@ export const login = async (
             email,
             password,
             redirectTo: DEFAULT_LOGIN_REDIRECT
-        })
+        });
+    
+        return { success: "Login successful!" };
+        
     } catch (error) {
-        if(error instanceof AuthError){
-            switch(error.type){
-                case"CredentialsSignin":
-                return {error: "Invalid credentials!"}
-                default: 
-                return {error: "Something went wrong!"}
+        if (error instanceof AuthError) {
+            switch (error.type) {
+                case "CredentialsSignin":
+                    return { error: "Invalid credentials!" };
+                default:
+                    return { error: "Something went wrong!" };
             }
         }
         throw error;

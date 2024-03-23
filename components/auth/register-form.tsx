@@ -21,9 +21,11 @@ import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import { register } from "@/actions/register"
+import { useRouter } from "next/navigation"
 
 
 export const RegisterForm = () => {
+  const router = useRouter(); 
   const [error, setError] = useState<string | undefined>("")
   const [success, setSuccess] = useState<string | undefined>("")
   const [isPending, startTransition] = useTransition();
@@ -44,8 +46,14 @@ export const RegisterForm = () => {
     startTransition(()=> {
        register(values)
        .then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
+        if(data.error){
+          setError(data.error)
+        } else {
+          // If registration successful, redirect to login page
+          setSuccess(data.success);
+          router.push('/auth/login'); // Redirect to login page
+        }
+        
        })
     })
     

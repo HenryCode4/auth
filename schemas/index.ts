@@ -32,7 +32,5 @@ export const BiometricSchema = z.object({
     name: z.string().min(1, {
       message: "Name is required"
     }),
-    biometric: z.string().min(8, {
-      message: "Minimum 8 characters required for biometric key"
-    })
+    
   });
